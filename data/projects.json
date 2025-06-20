@@ -1,0 +1,141 @@
+[
+  {
+    "_id": "1",
+    "title": "CODCrafters HMS - Hospital Management System",
+    "description": "Comprehensive Hospital Management System with patient records, appointment scheduling, billing, inventory management, and reporting dashboard.",
+    "longDescription": "A complete hospital management solution built for modern healthcare facilities. Features include patient management, appointment scheduling, billing system, inventory tracking, staff management, and comprehensive reporting. Built with React frontend and Node.js backend with MongoDB database.",
+    "category": "full-stack",
+    "technologies": ["React", "Node.js", "MongoDB", "Express.js", "Tailwind CSS", "Chart.js"],
+    "images": ["/images/projects/hms-1.jpg"],
+    "liveUrl": "",
+    "githubUrl": "",
+    "featured": true,
+    "status": "completed",
+    "startDate": "2022-03-01T00:00:00.000Z",
+    "endDate": "2022-08-01T00:00:00.000Z",
+    "client": "Healthcare Facility",
+    "metrics": {
+      "users": 500,
+      "uptime": "99.9%",
+      "satisfaction": 4.8
+    },
+    "challenges": [
+      "Complex patient data relationships",
+      "Real-time appointment scheduling",
+      "HIPAA compliance requirements"
+    ],
+    "solutions": [
+      "Implemented normalized database schema",
+      "Used WebSocket for real-time updates",
+      "Added encryption and audit trails"
+    ],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "2",
+    "title": "ICE AGE - Glacier Monitoring System",
+    "description": "AI-powered system for monitoring debris-covered glaciers using satellite imagery and deep learning algorithms.",
+    "longDescription": "My Final Year Project combining Software Engineering with Space Science. This system uses deep learning to automatically detect and monitor debris-covered glaciers from satellite imagery, providing crucial data for climate research.",
+    "category": "ai-ml",
+    "technologies": ["Python", "TensorFlow", "OpenCV", "Satellite Imagery", "Deep Learning", "NumPy", "Pandas"],
+    "images": ["/images/projects/ice-age-1.jpg"],
+    "liveUrl": "",
+    "githubUrl": "",
+    "featured": true,
+    "status": "completed",
+    "startDate": "2022-09-01T00:00:00.000Z",
+    "endDate": "2023-06-01T00:00:00.000Z",
+    "metrics": {
+      "performance": "95% accuracy in glacier detection",
+      "satisfaction": 5
+    },
+    "challenges": [
+      "Processing large satellite imagery datasets",
+      "Developing accurate deep learning models",
+      "Handling various weather conditions"
+    ],
+    "solutions": [
+      "Implemented efficient data preprocessing pipeline",
+      "Used transfer learning techniques",
+      "Applied data augmentation strategies"
+    ],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "3",
+    "title": "Car Repair Lab Management System",
+    "description": "Complete management solution for automotive repair shops with inventory tracking, appointment scheduling, and customer management.",
+    "longDescription": "A comprehensive system designed for car repair shops to streamline their operations. Features include customer management, appointment scheduling, inventory tracking, service history, billing, and reporting dashboard.",
+    "category": "full-stack",
+    "technologies": ["MERN Stack", "Redux", "Material-UI", "Node.js", "MongoDB"],
+    "images": ["/images/projects/car-repair-1.jpg"],
+    "liveUrl": "",
+    "githubUrl": "",
+    "featured": true,
+    "status": "completed",
+    "startDate": "2021-11-01T00:00:00.000Z",
+    "endDate": "2022-02-01T00:00:00.000Z",
+    "metrics": {
+      "users": 200,
+      "satisfaction": 4.7
+    },
+    "challenges": [
+      "Complex inventory management",
+      "Multi-user access control",
+      "Real-time status updates"
+    ],
+    "solutions": [
+      "Implemented role-based access control",
+      "Used Redux for state management",
+      "Added real-time notifications"
+    ],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "4",
+    "title": "Odoo E-commerce Integration",
+    "description": "Custom Odoo module for seamless e-commerce integration with multi-channel sales management.",
+    "longDescription": "A comprehensive Odoo module that integrates multiple e-commerce platforms, providing unified inventory management, order processing, and customer data synchronization across all sales channels.",
+    "category": "odoo",
+    "technologies": ["Python", "Odoo", "XML", "JavaScript", "PostgreSQL", "REST APIs"],
+    "images": ["/images/background.png"],
+    "liveUrl": "",
+    "githubUrl": "",
+    "featured": true,
+    "status": "completed",
+    "startDate": "2023-01-01T00:00:00.000Z",
+    "endDate": "2023-04-01T00:00:00.000Z",
+    "client": "E-commerce Company",
+    "metrics": {
+      "users": 1000,
+      "satisfaction": 4.9
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "5",
+    "title": "Shopify Custom Theme Development",
+    "description": "High-converting Shopify theme with advanced customization options and mobile-first design.",
+    "longDescription": "A custom Shopify theme built from scratch with focus on conversion optimization, mobile responsiveness, and advanced customization options. Includes custom sections, dynamic content, and integrated analytics.",
+    "category": "shopify",
+    "technologies": ["Liquid", "JavaScript", "CSS3", "HTML5", "Shopify APIs"],
+    "images": ["/images/background.png"],
+    "liveUrl": "",
+    "githubUrl": "",
+    "featured": false,
+    "status": "completed",
+    "startDate": "2023-06-01T00:00:00.000Z",
+    "endDate": "2023-08-01T00:00:00.000Z",
+    "client": "Fashion Brand",
+    "metrics": {
+      "performance": "40% increase in conversion rate",
+      "satisfaction": 4.8
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+] 
