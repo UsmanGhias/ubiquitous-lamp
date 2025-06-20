@@ -7,12 +7,14 @@ import { motion } from 'framer-motion'
 import { ExternalLink, Github, Filter, Search, Calendar, Users, TrendingUp, Plus, Settings } from 'lucide-react'
 import { projectCategories } from '@/lib/data'
 import type { ProjectCategory, Project } from '@/types'
+import ProjectModal from '@/components/ProjectModal'
 
 export function ProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'all'>('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   // Load projects from API
   useEffect(() => {
@@ -134,6 +136,7 @@ export function ProjectsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="project-card card overflow-hidden group"
+                onClick={() => setSelectedProject(project)}
               >
                 {/* Project Image */}
                 <div className="relative h-48 overflow-hidden">
@@ -340,6 +343,15 @@ export function ProjectsSection() {
             <div className="text-sm text-foreground/60">Technologies</div>
           </div>
         </motion.div>
+
+        {/* Project Modal */}
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            isOpen={!!selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
       </div>
     </section>
   )
