@@ -1,0 +1,17 @@
+{
+  "profileImage": "/images/profile/1750442910479-881266690-bluebg-removebg-preview.png",
+  "heroImage": "/images/hero/1750445056752-673413523-me.png",
+  "aboutImage": "/images/about/1750442770660-599554212-UsmanGhias.jpeg",
+  "backgroundImage": "/images/background/bg.jpg",
+  "name": "Usman Ghias",
+  "role": "Full Stack Developer",
+  "about": "Passionate Full Stack Developer with expertise in modern web technologies",
+  "email": "usmanghias533@gmail.com",
+  "phone": "+92 304 4840533",
+  "location": "Lahore, Pakistan",
+  "socialLinks": {
+    "github": "https://github.com/usmanghias",
+    "linkedin": "https://linkedin.com/in/usmanghias",
+    "twitter": "https://twitter.com/usmanghias"
+  }
+}
