@@ -1,9 +1,10 @@
+import React from 'react'
 import { X } from 'lucide-react'
 import { Project } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface ProjectModalProps {
-  project: Project
+  project: Project | null
   isOpen: boolean
   onClose: () => void
 }
@@ -32,55 +33,52 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             className="fixed left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] w-[95%] sm:w-[450px] max-h-[80vh] overflow-y-auto bg-background rounded-lg shadow-xl z-[200]"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border/10 px-4 py-3 flex items-center justify-between">
-              <h3 className="text-lg font-semibold">{project.title}</h3>
+            <div className="sticky top-0 bg-background/80 backdrop-blur-sm px-6 py-4 border-b border-border/10">
               <button
                 onClick={onClose}
-                className="p-1 hover:bg-accent/10 rounded-full transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:bg-accent/10 rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
+              <h3 className="text-xl font-bold pr-8">{project.title}</h3>
             </div>
 
             {/* Content */}
-            <div className="p-4">
-              <p className="text-muted-foreground mb-4">{project.description}</p>
-              
+            <div className="p-6">
+              <p className="text-foreground/70 mb-4">{project.description}</p>
+
               {/* Technologies */}
-              <div className="mb-4">
-                <h4 className="font-medium mb-2">Technologies</h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 text-sm bg-accent rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.technologies.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
 
               {/* Links */}
-              <div className="flex gap-2">
-                {project.github && (
+              <div className="flex space-x-3">
+                {project.liveUrl && (
                   <a
-                    href={project.github}
+                    href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 px-3 py-1.5 bg-accent hover:bg-accent/80 rounded text-sm transition-colors"
+                    className="flex-1 text-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
                   >
-                    GitHub
+                    View Live
                   </a>
                 )}
-                {project.demo && (
+                {project.githubUrl && (
                   <a
-                    href={project.demo}
+                    href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 px-3 py-1.5 bg-primary text-white hover:bg-primary/90 rounded text-sm transition-colors"
+                    className="flex-1 text-center px-4 py-2 border border-border hover:bg-accent/10 rounded-lg transition-colors text-sm font-medium"
                   >
-                    Live Demo
+                    View Code
                   </a>
                 )}
               </div>

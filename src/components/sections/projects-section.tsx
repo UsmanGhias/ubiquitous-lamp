@@ -15,6 +15,7 @@ export function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Load projects from API
   useEffect(() => {
@@ -135,8 +136,11 @@ export function ProjectsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="project-card card overflow-hidden group"
-                onClick={() => setSelectedProject(project)}
+                className="project-card card overflow-hidden group cursor-pointer"
+                onClick={() => {
+                  setSelectedProject(project)
+                  setIsModalOpen(true)
+                }}
               >
                 {/* Project Image */}
                 <div className="relative h-48 overflow-hidden">
@@ -345,13 +349,14 @@ export function ProjectsSection() {
         </motion.div>
 
         {/* Project Modal */}
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            isOpen={!!selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
+        <ProjectModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false)
+            setSelectedProject(null)
+          }}
+        />
       </div>
     </section>
   )
