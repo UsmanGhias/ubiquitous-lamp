@@ -17,8 +17,9 @@ function TimelineItem({ item, type, index }: TimelineItemProps) {
   const exp = item as Experience
   const edu = item as Education
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+  const formatDate = (date: Date | string) => {
+    const dateObj = typeof date === 'string' ? new Date(date) : date
+    return dateObj.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
   }
 
   return (
@@ -29,14 +30,13 @@ function TimelineItem({ item, type, index }: TimelineItemProps) {
       viewport={{ once: true }}
       className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center mb-8`}
     >
-      {/* Timeline Line */}
-      <div className="hidden md:flex flex-col items-center mx-8">
+      {/* Icon */}
+      <div className="hidden md:flex items-center mx-8">
         <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
           isExperience ? 'bg-primary text-primary-foreground' : 'bg-accent text-white'
         }`}>
           {isExperience ? <Briefcase size={20} /> : <GraduationCap size={20} />}
         </div>
-        <div className="w-0.5 h-16 bg-border mt-4"></div>
       </div>
 
       {/* Content Card */}
@@ -160,9 +160,6 @@ export function ExperienceSection() {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Central Timeline Line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-px w-0.5 h-full bg-border"></div>
-
           {/* Experience Items */}
           <div className="mb-16">
             <motion.h3

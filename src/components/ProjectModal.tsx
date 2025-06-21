@@ -1,7 +1,8 @@
 import React from 'react'
-import { X } from 'lucide-react'
-import { Project } from '@/types'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { X, ExternalLink, Github, Calendar, Users, TrendingUp } from 'lucide-react'
+import { Project } from '@/types'
 
 interface ProjectModalProps {
   project: Project | null
@@ -15,14 +16,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
+        <div className="fixed inset-0 flex items-center justify-center z-[100]">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
           />
 
           {/* Modal */}
@@ -30,61 +31,104 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="fixed left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] w-[95%] sm:w-[450px] max-h-[80vh] overflow-y-auto bg-background rounded-lg shadow-xl z-[200]"
+            className="relative w-[95%] sm:w-[450px] max-h-[80vh] overflow-y-auto bg-background rounded-lg shadow-xl z-[200]"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-background/80 backdrop-blur-sm px-6 py-4 border-b border-border/10">
+            <div className="relative border-b border-border/10">
               <button
                 onClick={onClose}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:bg-accent/10 rounded-full transition-colors"
+                className="absolute right-4 top-4 p-1 hover:bg-accent/10 rounded-full transition-colors"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
-              <h3 className="text-xl font-bold pr-8">{project.title}</h3>
+              <div className="p-4">
+                <h2 className="text-lg font-semibold pr-8">{project.title}</h2>
+                <p className="text-sm text-foreground/60 mt-1">{project.description}</p>
+              </div>
             </div>
 
             {/* Content */}
-            <div className="p-6">
-              <p className="text-foreground/70 mb-4">{project.description}</p>
+            <div className="p-4 space-y-4">
+              {/* Status & Links */}
+              <div className="flex items-center justify-between">
+                <div className="flex gap-2">
+                  {project.status && (
+                    <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${
+                      project.status === 'completed' ? 'bg-green-500/20 text-green-400' :
+                      project.status === 'in-progress' ? 'bg-blue-500/20 text-blue-400' :
+                      'bg-gray-500/20 text-gray-400'
+                    }`}>
+                      {project.status.replace('-', ' ')}
+                    </span>
+                  )}
+                </div>
+                <div className="flex gap-2">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-colors"
+                    >
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-colors"
+                    >
+                      <Github size={14} />
+                    </a>
+                  )}
+                </div>
+              </div>
 
               {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-1.5">
                 {project.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
+                    className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
 
-              {/* Links */}
-              <div className="flex space-x-3">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
-                  >
-                    View Live
-                  </a>
+              {/* Project Meta */}
+              <div className="flex flex-wrap gap-4 text-xs text-foreground/60">
+                <div className="flex items-center">
+                  <Calendar size={12} className="mr-1.5" />
+                  <span>
+                    {new Date(project.startDate).toLocaleDateString('en-US', { 
+                      month: 'short',
+                      year: 'numeric'
+                    })}
+                    {project.endDate && ` - ${new Date(project.endDate).toLocaleDateString('en-US', {
+                      month: 'short',
+                      year: 'numeric'
+                    })}`}
+                  </span>
+                </div>
+                {project.client && (
+                  <div className="flex items-center">
+                    <Users size={12} className="mr-1.5" />
+                    {project.client}
+                  </div>
                 )}
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center px-4 py-2 border border-border hover:bg-accent/10 rounded-lg transition-colors text-sm font-medium"
-                  >
-                    View Code
-                  </a>
+                {project.metrics && project.metrics.users && (
+                  <div className="flex items-center">
+                    <TrendingUp size={12} className="mr-1.5" />
+                    {project.metrics.users} users
+                  </div>
                 )}
               </div>
             </div>
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   )

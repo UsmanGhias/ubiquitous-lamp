@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Send, MapPin, Phone, Mail, MessageCircle, Github, Linkedin, Facebook, Instagram, Youtube } from 'lucide-react'
-import { userData } from '@/lib/data'
+import { userData, siteSettings } from '@/lib/staticData'
 
 interface FormData {
   name: string
@@ -33,48 +33,32 @@ export function ContactSection() {
     phone: '',
     company: '',
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
     
-    try {
-      // Send email using EmailJS or similar service
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-          phone: '',
-          company: '',
-        })
-      } else {
-        throw new Error('Failed to send message')
-      }
-    } catch (error) {
-      console.error('Error sending message:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-    }
+    // Create mailto link with form data
+    const mailtoLink = `mailto:${userData.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company}\n\nMessage:\n${formData.message}`
+    )}`
+    
+    // Open default email client
+    window.location.href = mailtoLink
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      phone: '',
+      company: '',
+    })
   }
 
   return (
@@ -127,27 +111,13 @@ export function ContactSection() {
                   <Phone className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Phone Numbers</h4>
-                  <div className="space-y-1">
-                    <Link 
-                      href={`tel:${userData.phone}`}
-                      className="block text-foreground/70 hover:text-primary transition-colors"
-                    >
-                      {userData.phone} (US)
-                    </Link>
-                    <Link 
-                      href={`tel:${userData.phoneSecondary}`}
-                      className="block text-foreground/70 hover:text-primary transition-colors"
-                    >
-                      {userData.phoneSecondary} (WhatsApp)
-                    </Link>
-                    <Link 
-                      href={`tel:${userData.phoneUK}`}
-                      className="block text-foreground/70 hover:text-primary transition-colors"
-                    >
-                      {userData.phoneUK} (UK)
-                    </Link>
-                  </div>
+                  <h4 className="font-semibold">Phone</h4>
+                  <Link 
+                    href={`tel:${userData.phoneSecondary}`}
+                    className="block text-foreground/70 hover:text-primary transition-colors"
+                  >
+                    {userData.phoneSecondary}
+                  </Link>
                 </div>
               </div>
 
@@ -171,7 +141,7 @@ export function ContactSection() {
             <div>
               <h4 className="font-semibold mb-4">Follow Me</h4>
               <div className="flex space-x-4">
-                {Object.entries(userData.socialLinks).map(([platform, url]) => {
+                {Object.entries(siteSettings.socialLinks).map(([platform, url]) => {
                   if (!url) return null
                   const Icon = socialIcons[platform as keyof typeof socialIcons]
                   if (!Icon) return null
@@ -198,7 +168,7 @@ export function ContactSection() {
                 Need immediate assistance? Reach out via WhatsApp for faster response.
               </p>
               <Link
-                href={userData.socialLinks.whatsapp || '#'}
+                href={`https://wa.me/${userData.phoneSecondary.replace(/[^0-9]/g, '')}`}
                 target="_blank"
                 className="inline-flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
               >
@@ -308,41 +278,19 @@ export function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  rows={6}
+                  rows={5}
                   className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-none"
-                  placeholder="Tell me about your project or idea..."
+                  placeholder="Your message here..."
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    <span>Send Message</span>
-                  </>
-                )}
+                <Send size={18} />
+                <span>Send Message</span>
               </button>
-
-              {submitStatus === 'success' && (
-                <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-600 text-center">
-                  Message sent successfully! I'll get back to you soon.
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-600 text-center">
-                  Something went wrong. Please try again or contact me directly.
-                </div>
-              )}
             </form>
           </motion.div>
         </div>

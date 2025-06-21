@@ -1,0 +1,177 @@
+{
+  "personalInfo": {
+    "name": "Muhammad Usman Khan",
+    "title": "Full Stack Developer & Odoo Expert",
+    "bio": "Passionate full-stack developer with expertise in Odoo ERP development, web applications, and cloud solutions. Committed to delivering high-quality, scalable software solutions that drive business growth.",
+    "location": "Samundri, Punjab, Pakistan",
+    "email": "usmanghias533@gmail.com",
+    "phone": "+92 300 1234567",
+    "profileImage": "/images/profile.jpg",
+    "resumeUrl": "/resume.pdf",
+    "socialLinks": {
+      "github": "https://github.com/UsmanGhias",
+      "linkedin": "https://www.linkedin.com/in/m- usmanghias/",
+      "twitter": "",
+      "instagram": "",
+      "facebook": "",
+      "youtube": ""
+    }
+  },
+  "heroSection": {
+    "backgroundImage": "/images/hero-bg.jpg",
+    "greeting": "Hi, I'm Usman Khan",
+    "description": "A passionate Full Stack Developer and Odoo Expert, dedicated to creating innovative solutions that help businesses thrive in the digital age."
+  },
+  "aboutSection": {
+    "title": "About Me",
+    "description": "With over 3 years of experience in software development, I specialize in building robust web applications and customizing Odoo ERP solutions. My expertise spans across modern web technologies and enterprise software development.",
+    "image": "/images/about.jpg",
+    "highlights": [
+      "Developed 50+ custom Odoo modules for various industries",
+      "Built scalable web applications using Next.js and React",
+      "Expertise in Python, JavaScript, and TypeScript",
+      "Strong background in database design and optimization",
+      "Experience with cloud deployment and DevOps practices"
+    ]
+  },
+  "skillsSection": {
+    "title": "Skills & Expertise",
+    "description": "A comprehensive overview of my technical skills and professional capabilities across various technologies and domains.",
+    "categories": [
+      {
+        "name": "Frontend Development",
+        "skills": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "JavaScript",
+          "HTML5/CSS3"
+        ],
+        "icon": "globe"
+      },
+      {
+        "name": "Backend Development",
+        "skills": [
+          "Node.js",
+          "Python",
+          "Express.js",
+          "Django",
+          "PHP",
+          "REST APIs"
+        ],
+        "icon": "code"
+      },
+      {
+        "name": "Database & Cloud",
+        "skills": [
+          "MongoDB",
+          "PostgreSQL",
+          "MySQL",
+          "AWS",
+          "Docker",
+          "Redis"
+        ],
+        "icon": "database"
+      },
+      {
+        "name": "Odoo Development",
+        "skills": [
+          "Odoo Development",
+          "OWL Framework",
+          "XML-RPC",
+          "Odoo Apps",
+          "Business Analysis",
+          "ERP Consulting"
+        ],
+        "icon": "settings"
+      }
+    ]
+  },
+  "experienceSection": {
+    "title": "Professional Experience",
+    "description": "My professional journey and the impact I've made at various organizations throughout my career.",
+    "experiences": [
+      {
+        "_id": "1",
+        "company": "CODCrafters",
+        "position": "Chief Executive Officer",
+        "description": "Leading the implementation of ERP systems for clients, ensuring seamless integration and increased operational efficiency. Developing custom web and mobile applications tailored to meet clients specific business needs.",
+        "startDate": "2021-09-01T00:00:00.000Z",
+        "current": true,
+        "location": "Samundri, Punjab, Pakistan",
+        "type": "full-time",
+        "achievements": [
+          "Led implementation of ERP systems for clients",
+          "Developed custom web and mobile applications",
+          "Provided expert business consultancy services",
+          "Built Hospital Management System with 50+ apps",
+          "Helped clients shift operations online"
+        ],
+        "technologies": [
+          "Odoo",
+          "MERN Stack",
+          "Python",
+          "ERP Systems",
+          "Business Consulting"
+        ]
+      },
+      {
+        "_id": "2",
+        "company": "TeleNoc",
+        "position": "Senior Odoo Developer",
+        "description": "Developed full-fledged Odoo modules with frontend in Owl and XML-RPC and backend in Python. Improved company reputation by enhancing employee benefits and satisfaction.",
+        "startDate": "2023-10-01T00:00:00.000Z",
+        "endDate": "2024-09-30T00:00:00.000Z",
+        "current": false,
+        "location": "Riyadh, Saudi Arabia (Hybrid)",
+        "type": "full-time",
+        "achievements": [
+          "Developed full-fledged Odoo modules with Owl frontend",
+          "Built backend systems in Python with XML-RPC",
+          "Improved company reputation and employee satisfaction",
+          "Successfully completed multiple complex projects"
+        ],
+        "technologies": [
+          "Odoo",
+          "OWL",
+          "XML-RPC",
+          "Python",
+          "HTML5",
+          "CSS3",
+          "Full-Stack Development"
+        ]
+      },
+      {
+        "_id": "3",
+        "company": "SyncQuik",
+        "position": "Senior Odoo Techno Functional",
+        "description": "Successfully developed a comprehensive Car Repair Management System. Implemented customized modules to enhance system functionality and streamline operations.",
+        "startDate": "2024-11-01T00:00:00.000Z",
+        "endDate": "2025-01-31T00:00:00.000Z",
+        "current": false,
+        "location": "Dubai, UAE (Remote)",
+        "type": "freelance",
+        "achievements": [
+          "Developed comprehensive Car Repair Management System",
+          "Implemented customized modules for enhanced functionality",
+          "Collaborated with cross-functional teams",
+          "Ensured seamless integration and user-friendly interface"
+        ],
+        "technologies": [
+          "Odoo",
+          "Python",
+          "XML-RPC",
+          "Project Management",
+          "Functional Training"
+        ]
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "Get In Touch",
+    "description": "Ready to start your next project? Let's discuss how I can help bring your ideas to life.",
+    "officeAddress": "Lahore, Pakistan",
+    "workingHours": "Mon - Fri: 9:00 AM - 6:00 PM (PKT)"
+  }
+}

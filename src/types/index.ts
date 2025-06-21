@@ -1,6 +1,5 @@
 // Core Types
 export interface User {
-  _id?: string;
   name: string;
   email: string;
   title: string;
@@ -13,8 +12,6 @@ export interface User {
   avatar: string;
   resume: string;
   socialLinks: SocialLinks;
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
 export interface SocialLinks {
@@ -29,26 +26,23 @@ export interface SocialLinks {
 
 // Project Types
 export interface Project {
-  _id?: string;
   title: string;
   description: string;
-  longDescription?: string;
-  category: ProjectCategory;
+  longDescription: string;
+  category: string;
   technologies: string[];
   images: string[];
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
-  status: ProjectStatus;
-  startDate: Date;
-  endDate?: Date;
+  status: 'completed' | 'in-progress' | 'planned';
+  startDate: Date | string;
+  endDate?: Date | string;
   client?: string;
   testimonial?: Testimonial;
   metrics?: ProjectMetrics;
   challenges?: string[];
   solutions?: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
 export type ProjectCategory = 
@@ -77,12 +71,11 @@ export interface ProjectMetrics {
 
 // Experience & Education
 export interface Experience {
-  _id?: string;
   company: string;
   position: string;
   description: string;
-  startDate: Date;
-  endDate?: Date;
+  startDate: Date | string;
+  endDate?: Date | string;
   current: boolean;
   location: string;
   type: 'full-time' | 'part-time' | 'contract' | 'freelance' | 'internship';
@@ -91,12 +84,11 @@ export interface Experience {
 }
 
 export interface Education {
-  _id?: string;
   institution: string;
   degree: string;
   field: string;
-  startDate: Date;
-  endDate?: Date;
+  startDate: Date | string;
+  endDate?: Date | string;
   current: boolean;
   gpa?: string;
   achievements?: string[];
@@ -105,7 +97,6 @@ export interface Education {
 
 // Skills & Certifications
 export interface Skill {
-  _id?: string;
   name: string;
   category: SkillCategory;
   level: SkillLevel;
@@ -130,7 +121,6 @@ export type SkillLevel =
   | 'expert';
 
 export interface Certification {
-  _id?: string;
   name: string;
   issuer: string;
   issueDate: Date;
@@ -142,7 +132,6 @@ export interface Certification {
 
 // Blog & Content
 export interface BlogPost {
-  _id?: string;
   title: string;
   slug: string;
   excerpt: string;
@@ -156,13 +145,10 @@ export interface BlogPost {
   readTime: number;
   views: number;
   likes: number;
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
 // Testimonials & Reviews
 export interface Testimonial {
-  _id?: string;
   name: string;
   position: string;
   company: string;
@@ -171,12 +157,10 @@ export interface Testimonial {
   avatar?: string;
   projectId?: string;
   featured: boolean;
-  createdAt?: Date;
 }
 
 // Contact & Communication
 export interface ContactMessage {
-  _id?: string;
   name: string;
   email: string;
   subject: string;
@@ -187,8 +171,6 @@ export interface ContactMessage {
   timeline?: string;
   projectType?: string;
   status: MessageStatus;
-  createdAt?: Date;
-  repliedAt?: Date;
 }
 
 export type MessageStatus = 
@@ -199,7 +181,6 @@ export type MessageStatus =
 
 // Analytics & Statistics
 export interface Analytics {
-  _id?: string;
   pageViews: number;
   uniqueVisitors: number;
   bounceRate: number;
@@ -233,24 +214,7 @@ export interface LocationStats {
   visitors: number;
 }
 
-// API Response Types
-export interface ApiResponse<T = any> {
-  success: boolean;
-  data?: T;
-  message?: string;
-  error?: string;
-}
-
-export interface PaginatedResponse<T> extends ApiResponse<T[]> {
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    pages: number;
-  };
-}
-
-// Form Types
+// Form Data Types
 export interface ContactFormData {
   name: string;
   email: string;
@@ -286,7 +250,6 @@ export interface TimelineItemProps {
   type: 'experience' | 'education';
 }
 
-// Utility Types
 export type Theme = 'light' | 'dark';
 
 export interface FilterOptions {
@@ -297,13 +260,65 @@ export interface FilterOptions {
 }
 
 export interface SortOptions {
-  field: 'title' | 'startDate' | 'endDate' | 'createdAt';
+  field: 'title' | 'startDate' | 'endDate';
   order: 'asc' | 'desc';
 }
 
-// Database Models (for backend)
-export interface DatabaseModel {
-  _id?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+export interface SiteSettings {
+  personalInfo: {
+    name: string;
+    title: string;
+    subtitle: string;
+    bio: string;
+    location: string;
+    email: string;
+    phone: string;
+    profileImage: string;
+    resumeUrl: string;
+    socialLinks: {
+      github?: string;
+      linkedin?: string;
+      twitter?: string;
+      instagram?: string;
+      whatsapp?: string;
+    };
+  };
+  heroSection: {
+    backgroundImage: string;
+    greeting: string;
+    description: string;
+    ctaText: string;
+  };
+  aboutSection: {
+    title: string;
+    description: string;
+    image: string;
+    highlights: string[];
+  };
+  skillsSection: {
+    title: string;
+    description: string;
+    categories: {
+      name: string;
+      skills: string[];
+      icon: string;
+    }[];
+  };
+  experienceSection: {
+    title: string;
+    description: string;
+    experiences: Experience[];
+  };
+  contactSection: {
+    title: string;
+    description: string;
+    officeAddress: string;
+    workingHours: string;
+  };
+}
+
+export interface ImageCategory {
+  name: string;
+  path: string;
+  images: string[];
 } 

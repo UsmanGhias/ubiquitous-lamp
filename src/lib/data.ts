@@ -7,7 +7,7 @@ export const userData: User = {
   title: 'Senior Odoo | MERN | Shopify | Flutter | DevOps | WordPress & Full Stack Developer | MSSE @Quantic | CEO @CODCrafters | Senior Software & AI Engineer',
   bio: `Passionate software engineer from PUCIT with expertise in full-stack development, Odoo customization, and data science. Currently pursuing MSSE at Quantic School and based in Washington, D.C. I've successfully delivered 86+ Odoo projects and love creating innovative solutions that make a difference.`,
   location: 'Washington, D.C., United States',
-  phone: '+1 (202) XXX-XXXX', // Primary US number
+  phone: '+44 7767559399', // UK number
   phoneSecondary: '+92 312 6912440', // Pakistan WhatsApp
   phoneUK: '+44 7767559399', // UK number
   website: 'https://codcrafters.org',

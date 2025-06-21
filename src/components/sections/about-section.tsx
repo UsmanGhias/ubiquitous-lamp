@@ -3,10 +3,21 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail, Calendar, Award, Users, Code, Coffee, GraduationCap } from 'lucide-react'
+import { MapPin, Phone, Mail, Calendar, Award, Users, Code, Coffee, GraduationCap, Globe, Database, Brain } from 'lucide-react'
 import { userData, stats } from '@/lib/data'
+import { useSettings } from '@/hooks/useSettings'
 
 export function AboutSection() {
+  const { settings, isLoading } = useSettings()
+
+  if (isLoading || !settings) {
+    return (
+      <div className="flex items-center justify-center h-40">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
   return (
     <section id="about" className="section-padding bg-background">
       <div className="container mx-auto container-padding">
@@ -109,7 +120,7 @@ export function AboutSection() {
             <div className="relative">
               <div className="relative w-80 h-80 mx-auto rounded-2xl overflow-hidden glow">
                 <Image
-                  src="/images/user.jpg"
+                  src={settings.aboutImage}
                   alt="Muhammad Usman Khan - About"
                   fill
                   className="object-cover"
@@ -122,19 +133,29 @@ export function AboutSection() {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute -top-4 -left-4 bg-card border border-border rounded-lg p-4 shadow-lg"
               >
-                <Code className="w-6 h-6 text-primary mb-2" />
-                <div className="text-sm font-semibold">Clean Code</div>
-                <div className="text-xs text-foreground/60">Advocate</div>
+                <Globe className="w-6 h-6 text-primary mb-2" />
+                <div className="text-sm font-semibold">Full Stack</div>
+                <div className="text-xs text-foreground/60">Developer</div>
               </motion.div>
               
               <motion.div
                 animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-                className="absolute -bottom-4 -right-4 bg-card border border-border rounded-lg p-4 shadow-lg"
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                className="absolute top-1/2 -right-4 bg-card border border-border rounded-lg p-4 shadow-lg"
               >
-                <Coffee className="w-6 h-6 text-accent mb-2" />
-                <div className="text-sm font-semibold">Coffee Lover</div>
-                <div className="text-xs text-foreground/60">∞ Cups</div>
+                <Database className="w-6 h-6 text-accent mb-2" />
+                <div className="text-sm font-semibold">Odoo Expert</div>
+                <div className="text-xs text-foreground/60">86+ Projects</div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+                className="absolute -bottom-4 -left-4 bg-card border border-border rounded-lg p-4 shadow-lg"
+              >
+                <Brain className="w-6 h-6 text-primary mb-2" />
+                <div className="text-sm font-semibold">AI & ML</div>
+                <div className="text-xs text-foreground/60">Enthusiast</div>
               </motion.div>
             </div>
 

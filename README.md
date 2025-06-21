@@ -1,26 +1,19 @@
 # Muhammad Usman Khan - Portfolio Website
 
-A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. Features a dynamic project management dashboard, functional contact form, and comprehensive showcase of professional experience.
+A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. Features a beautiful UI, static project showcase, and comprehensive display of professional experience.
 
-## 🚀 New Features & Improvements
+## 🚀 Features
 
-### ✨ Dynamic Project Dashboard
-- **Admin Panel**: Full-featured dashboard at `/admin` for managing projects
-- **Real-time Updates**: Projects are dynamically loaded from API
-- **CRUD Operations**: Create, read, update, and delete projects
-- **Rich Forms**: Comprehensive project editing with all metadata
-- **File-based Storage**: Projects stored in JSON format for easy management
-- **Authentication**: Simple password protection (password: `admin123`)
-
-### 🎯 Enhanced Functionality
-- **Functional Contact Form**: Email integration with Nodemailer
+### 🎯 Core Features
+- **Static Project Showcase**: Beautifully designed project display
+- **Contact Form**: Direct email integration via mailto links
 - **Resume Download**: Direct PDF download functionality
-- **Image Organization**: Structured asset management with guidelines
-- **Performance Optimizations**: Improved loading and error handling
+- **Image Organization**: Structured asset management
+- **Performance Optimizations**: Fast loading and smooth animations
 - **TypeScript Integration**: Full type safety throughout the application
 
-### 🔧 Technical Improvements
-- **API Routes**: RESTful endpoints for project and contact management
+### 🔧 Technical Features
+- **Static Site Generation**: Fast and secure static site
 - **Error Handling**: Comprehensive error states and loading indicators
 - **Responsive Design**: Mobile-first approach with modern UI/UX
 - **SEO Optimized**: Meta tags, structured data, and accessibility features
@@ -29,8 +22,7 @@ A modern, responsive portfolio website built with Next.js 14, TypeScript, and Ta
 
 - **Frontend**: Next.js 14, React 18, TypeScript
 - **Styling**: Tailwind CSS, Framer Motion for animations
-- **Backend**: Next.js API Routes, Nodemailer
-- **Database**: File-based JSON storage (easily upgradeable to MongoDB)
+- **Data**: Static JSON files for content
 - **Deployment**: Vercel-ready configuration
 - **Tools**: ESLint, Prettier, Lucide Icons
 
@@ -40,26 +32,20 @@ A modern, responsive portfolio website built with Next.js 14, TypeScript, and Ta
 Portfolio/
 ├── src/
 │   ├── app/
-│   │   ├── admin/              # Admin dashboard
-│   │   ├── api/                # API routes
-│   │   │   ├── admin/projects/ # Project management API
-│   │   │   ├── contact/        # Contact form API
-│   │   │   └── projects/       # Public projects API
 │   │   └── globals.css         # Global styles
 │   ├── components/
-│   │   ├── layout/             # Header, Footer components
-│   │   └── sections/           # Page sections
+│   │   ├── layout/            # Header, Footer components
+│   │   └── sections/          # Page sections
 │   ├── lib/
-│   │   └── data.ts            # Static data and configurations
+│   │   └── staticData.ts      # Static data and configurations
 │   └── types/
 │       └── index.ts           # TypeScript type definitions
 ├── public/
-│   ├── images/                # Static images
-│   └── resume.pdf            # Downloadable resume
-├── data/
-│   └── projects.json         # Dynamic project data
-└── images/
-    └── portfolio-assets/     # Asset organization with guidelines
+│   ├── images/               # Static images
+│   └── resume.pdf           # Downloadable resume
+└── data/
+    ├── settings.json        # Site settings
+    └── projects.json        # Project data
 ```
 
 ## 🚀 Quick Start
@@ -83,82 +69,31 @@ Portfolio/
    yarn install
    ```
 
-3. **Set up environment variables**
-   ```bash
-   cp env.local.example .env.local
-   ```
-   
-   Update `.env.local` with your email credentials:
-   ```env
-   EMAIL_USER=your-email@gmail.com
-   EMAIL_PASS=your-app-password
-   NEXT_PUBLIC_SITE_URL=http://localhost:3000
-   ```
-
-4. **Start development server**
+3. **Start development server**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-5. **Access the application**
+4. **Access the application**
    - Portfolio: http://localhost:3000
-   - Admin Dashboard: http://localhost:3000/admin
-
-## 📊 Admin Dashboard Usage
-
-### Accessing the Dashboard
-1. Navigate to `/admin`
-2. Enter password: `admin123` (change this in production!)
-3. Manage your projects with full CRUD operations
-
-### Adding Projects
-1. Click "Add Project" button
-2. Fill in project details:
-   - Title, description, category
-   - Technologies (comma-separated)
-   - Project status and dates
-   - Client information
-   - Mark as featured if desired
-3. Save to add to your portfolio
-
-### Managing Projects
-- **Edit**: Click edit icon on any project card
-- **Delete**: Click delete icon (with confirmation)
-- **Filter**: Use category filters and search
-- **Status**: Track project completion status
-
-## 📧 Contact Form Setup
-
-### Email Configuration
-The contact form uses Nodemailer with Gmail SMTP. To set up:
-
-1. **Enable 2-Factor Authentication** on your Gmail account
-2. **Generate App Password**:
-   - Go to Google Account settings
-   - Security → 2-Step Verification → App passwords
-   - Generate password for "Mail"
-3. **Update Environment Variables**:
-   ```env
-   EMAIL_USER=your-email@gmail.com
-   EMAIL_PASS=your-16-character-app-password
-   ```
-
-### Form Features
-- Auto-reply to users
-- Admin notification emails
-- Form validation and error handling
-- Success/error feedback
 
 ## 🎨 Customization Guide
 
 ### Personal Information
-Update your details in `src/lib/data.ts`:
+Update your details in `data/settings.json`:
 - Personal information (name, title, bio)
 - Contact details and social links
 - Skills and experience data
 - Professional experience timeline
+
+### Project Data
+Update project information in `data/projects.json`:
+- Project details
+- Technologies used
+- Images and links
+- Status and dates
 
 ### Styling & Themes
 - **Colors**: Modify CSS variables in `globals.css`
@@ -180,11 +115,7 @@ Update your details in `src/lib/data.ts`:
    vercel --prod
    ```
 
-2. **Environment Variables**:
-   - Add all `.env.local` variables to Vercel dashboard
-   - Ensure email credentials are secure
-
-3. **Domain Setup**:
+2. **Domain Setup**:
    - Configure custom domain in Vercel
    - Update `NEXT_PUBLIC_SITE_URL` accordingly
 
@@ -192,23 +123,6 @@ Update your details in `src/lib/data.ts`:
 - **Netlify**: Use `npm run build` and deploy `out/` folder
 - **AWS**: Deploy with Amplify or S3 + CloudFront
 - **Docker**: Dockerfile included for containerization
-
-## 🔐 Security Considerations
-
-### Production Checklist
-- [ ] Change admin password from default
-- [ ] Use environment variables for sensitive data
-- [ ] Enable HTTPS in production
-- [ ] Set up proper CORS policies
-- [ ] Implement rate limiting for APIs
-- [ ] Regular security updates
-
-### Admin Authentication
-Current implementation uses simple password authentication. For production:
-- Consider implementing JWT tokens
-- Add session management
-- Use bcrypt for password hashing
-- Implement role-based access control
 
 ## 📈 Performance & SEO
 

@@ -4,10 +4,23 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
       },
     ],
     formats: ['image/webp', 'image/avif'],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: ['localhost'],
+    unoptimized: true,
   },
   async headers() {
     return [
@@ -29,6 +42,16 @@ const nextConfig = {
         ],
       },
     ]
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(pdf|pptx)$/,
+      type: 'asset/resource',
+      generator: {
+        filename: 'static/media/[name][ext]',
+      },
+    })
+    return config
   },
 }
 

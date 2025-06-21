@@ -4,10 +4,26 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { TypeAnimation } from 'react-type-animation'
-import { ArrowDown, Download, MessageCircle } from 'lucide-react'
+import { ArrowDown, Download, MessageCircle, Code, GraduationCap, Database } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useSettings } from '@/hooks/useSettings'
 
 export function HeroSection() {
+  const { settings, isLoading } = useSettings()
+
+  if (isLoading || !settings) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
+  const handleProjectsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center hero-bg section-padding">
       <div className="container mx-auto container-padding">
@@ -35,10 +51,15 @@ export function HeroSection() {
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="text-hero gradient-text"
               >
-                Muhammad Usman Khan
+                {settings.name}
               </motion.h1>
               
-              <div className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground/90 min-h-[80px]">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground/90 min-h-[80px]"
+              >
                 <TypeAnimation
                   sequence={[
                     'Senior Odoo Developer',
@@ -47,18 +68,14 @@ export function HeroSection() {
                     2000,
                     'MERN Stack Expert',
                     2000,
-                    'Shopify Developer',
-                    2000,
                     'AI Engineer',
-                    2000,
-                    'DevOps Specialist',
                     2000,
                   ]}
                   wrapper="span"
                   speed={50}
                   repeat={Infinity}
                 />
-              </div>
+              </motion.div>
             </div>
 
             <motion.p
@@ -82,10 +99,7 @@ export function HeroSection() {
               <Link
                 href="#projects"
                 className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 glow-hover"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
-                }}
+                onClick={handleProjectsClick}
               >
                 View My Work
                 <ArrowDown className="ml-2 h-5 w-5" />
@@ -147,8 +161,8 @@ export function HeroSection() {
               {/* Main image */}
               <div className="relative z-10 rounded-2xl overflow-hidden glow">
                 <Image
-                  src="/images/me.png"
-                  alt="Muhammad Usman Khan - Senior Full Stack Developer"
+                  src={settings.heroImage}
+                  alt={settings.name}
                   width={500}
                   height={600}
                   className="w-full h-auto object-cover"
@@ -156,21 +170,23 @@ export function HeroSection() {
                 />
               </div>
               
-              {/* Floating badges */}
+              {/* Floating badges - Only keeping the top two best ones */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -left-8 top-1/4 bg-card border border-border rounded-lg p-3 shadow-lg"
+                className="absolute -left-8 top-8 bg-card border border-border rounded-lg p-3 shadow-lg"
               >
+                <Database className="w-6 h-6 text-primary mb-2" />
                 <div className="text-sm font-semibold">Senior Odoo</div>
                 <div className="text-xs text-foreground/60">Expert</div>
               </motion.div>
               
               <motion.div
                 animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                className="absolute -right-8 top-3/4 bg-card border border-border rounded-lg p-3 shadow-lg"
+                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                className="absolute -right-8 top-16 bg-card border border-border rounded-lg p-3 shadow-lg"
               >
+                <GraduationCap className="w-6 h-6 text-accent mb-2" />
                 <div className="text-sm font-semibold">MSSE @Quantic</div>
                 <div className="text-xs text-foreground/60">Student</div>
               </motion.div>
