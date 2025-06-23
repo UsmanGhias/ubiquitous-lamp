@@ -5,6 +5,7 @@
       "title": "Hospital Management System",
       "description": "A comprehensive hospital management system with 50+ modules including patient management, appointment scheduling, billing, and inventory.",
       "longDescription": "Built a complete Hospital Management System using Odoo framework with custom modules for patient management, appointment scheduling, billing, pharmacy, laboratory, and inventory management. The system streamlines hospital operations and improves patient care.",
+      "image": "/images/placeholder.jpg",
       "documentUrl": "/images/projects/HMS-CODCrafters.pdf",
       "technologies": ["Odoo", "Python", "PostgreSQL", "XML", "JavaScript"],
       "category": "odoo",
@@ -15,6 +16,7 @@
       "title": "Car Repair Management System",
       "description": "An end-to-end solution for managing car repair workshops, including service tracking, parts inventory, and customer management.",
       "longDescription": "Developed a Car Repair Management System that helps workshops manage their daily operations efficiently. Features include service tracking, parts inventory, customer management, and automated billing.",
+      "image": "/images/placeholder.jpg",
       "documentUrl": "/images/projects/Car-Repairing-Lab.pdf",
       "technologies": ["Odoo", "Python", "PostgreSQL", "OWL Framework"],
       "category": "odoo",
@@ -25,6 +27,7 @@
       "title": "Multi-Vendor E-commerce Platform",
       "description": "A feature-rich multi-vendor marketplace platform built with modern e-commerce capabilities.",
       "longDescription": "Created a sophisticated multi-vendor e-commerce platform that enables multiple sellers to manage their stores, products, and orders. Includes features like automated vendor payouts, commission management, and advanced analytics.",
+      "image": "/images/placeholder.jpg",
       "technologies": ["Next.js", "React", "Node.js", "MongoDB", "Stripe"],
       "category": "web-development",
       "featured": true

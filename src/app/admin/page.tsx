@@ -22,8 +22,18 @@ export default function AdminPage() {
                 </div>
               </div>
             </div>
-            
+
             <div className="grid gap-6">
+              {/* Image Preview */}
+              {project.image && (
+                <div>
+                  <label className="block text-sm font-medium mb-2">Project Image</label>
+                  <div className="relative h-48 w-full overflow-hidden rounded-lg border bg-muted flex items-center justify-center">
+                    <div className="text-muted-foreground">Image Placeholder</div>
+                  </div>
+                </div>
+              )}
+              
               {/* Document Link */}
               {project.documentUrl && (
                 <div>
