@@ -1,4 +1,4 @@
-# Muhammad Usman Khan - Portfolio Website
+# Muhammad Usman Khan - Demo Website - Orginal Repo is Private
 
 A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. Features a beautiful UI, static project showcase, and comprehensive display of professional experience.
 
